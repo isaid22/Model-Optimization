@@ -7,6 +7,7 @@ import torch
 import torch.nn as nn
 import torch.quantization as quantization
 import time
+import os
 
 
 class SimpleNet(nn.Module):
@@ -84,7 +85,6 @@ def compare_model_sizes(original_model, quantized_model):
     torch.save(original_model.state_dict(), '/tmp/original_model.pth')
     torch.save(quantized_model.state_dict(), '/tmp/quantized_model.pth')
     
-    import os
     original_size = os.path.getsize('/tmp/original_model.pth') / (1024 * 1024)  # MB
     quantized_size = os.path.getsize('/tmp/quantized_model.pth') / (1024 * 1024)  # MB
     compression_ratio = original_size / quantized_size

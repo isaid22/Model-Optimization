@@ -110,7 +110,9 @@ def save_model(model, path, optimizer=None, epoch=None, metadata=None):
     if metadata is not None:
         checkpoint['metadata'] = metadata
     
-    os.makedirs(os.path.dirname(path), exist_ok=True)
+    dir_path = os.path.dirname(path)
+    if dir_path:
+        os.makedirs(dir_path, exist_ok=True)
     torch.save(checkpoint, path)
     print(f"Model saved to {path}")
 
